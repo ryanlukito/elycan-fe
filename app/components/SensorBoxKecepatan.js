@@ -41,11 +41,11 @@ const SensorBoxKecepatan = ({children}) => {
       console.log(`Received message from ${topic}: ${message.toString()}`);
       try {
         const data = JSON.parse(message);
-        const newKecepatan = data.Temperature !== null ? data.Temperature.toFixed(2) : 'null';
+        const newKecepatan = data.Kecepatan !== null ? data.Kecepatan.toFixed(2) : 'null';
         
         const dataSend = {
-          temperatureCur: parseFloat(data.Temperature),
-          humidityCur: parseFloat(data.Humidity),
+          kecepatanCur: parseFloat(data.Kecepatan),
+          arahCur: parseInt(data.Arah),
         }
 
         postData(dataSend);

@@ -40,7 +40,7 @@ const LinePlot = () => {
             console.log(`Line Received message from ${topic}: ${message.toString()}`);
             try {
                 const data = JSON.parse(message);
-                const newKecepatan = data.Temperature !== null ? data.Temperature.toFixed(2) : null;
+                const newKecepatan = data.Kecepatan !== null ? data.Kecepatan.toFixed(2) : null;
 
                 if (newKecepatan !== null) {
                     setKecepatan((prevKecepatan) => {
@@ -110,6 +110,10 @@ const LinePlot = () => {
                                 title: {
                                     display: true,
                                     text: "Time",
+                                    font: {
+                                        weight: 'bold', // Make the "Time" title bold
+                                        size: 14,       // Adjust the size if needed
+                                    },
                                 },
                             },
                             y: {
@@ -117,6 +121,10 @@ const LinePlot = () => {
                                 title: {
                                     display: true,
                                     text: "Kecepatan",
+                                    font: {
+                                        weight: 'bold', // Make the "Time" title bold
+                                        size: 14,       // Adjust the size if needed
+                                    },
                                 },
                             },
                         },
@@ -132,7 +140,7 @@ const LinePlot = () => {
     }, [kecepatan, time]); // Update chart whenever kecepatan or time changes
 
     return (
-        <div className="w-[33vw] h-[35vw] ml-[1vw]">
+        <div className="w-[55vw] h-[55vw] ml-[1vw]">
             <canvas ref={chartRef} />
         </div>
     );
