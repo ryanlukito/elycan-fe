@@ -140,7 +140,7 @@ const LinePlot = () => {
     }, [kecepatan, time]); // Update chart whenever kecepatan or time changes
 
     return (
-        <div className="w-[55vw] h-[55vw] ml-[1vw]">
+        <div className="w-[55vw] h-[26vw] ml-[1vw]">
             <canvas ref={chartRef} />
         </div>
     );

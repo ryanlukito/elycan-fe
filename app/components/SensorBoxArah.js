@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import mqtt from 'mqtt';
+import Compass from './Compass';
 
 
 const SensorBoxArah = ({children}) => {
@@ -35,7 +36,7 @@ const SensorBoxArah = ({children}) => {
             result = 'Barat Laut';
             break;
         default:
-            result = 'Invalid Direction';
+            result = 'Device Disconnected';
     }
     return result;
   }
@@ -49,8 +50,6 @@ const SensorBoxArah = ({children}) => {
       reconnectPeriod: 1000,
       connectTimeout: 30 * 1000,
     };
-
-    
 
     const client = mqtt.connect(brokerUrl, options);
 
@@ -80,9 +79,13 @@ const SensorBoxArah = ({children}) => {
   }, []);
 
   return (
-    <div className="w-[15.625vw] h-[13.75vw] rounded-[0.781vw] bg-white drop-shadow-lg text-center">
-      <h1 className="font-bold text-[1.563vw] mt-[0.3vw]">{children}</h1>
-      <h1 className="mt-[2vw]">{ChangeToCompass(arah)}</h1>
+    <div className="w-[15.625vw] h-[13.75vw] rounded-[0.781vw] bg-white drop-shadow-lg text-center flex flex-col justify-center items-center">
+      <h1 className="font-bold text-[1.563vw] mt-[0.5vw]">{children}</h1>
+      <div>
+        <Compass>{ChangeToCompass(arah)}</Compass>
+      </div>
+      {/* 
+      <h1 className="text-[1.5vw] mt-[2vw] p-[1vw]">{ChangeToCompass(arah)}</h1> */}
     </div>
   )
 }
